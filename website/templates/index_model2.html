@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fittone</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@v0.158.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@v0.158.0/examples/jsm/"
+      }
+    }
+  </script>
+
+  <script type="module" src="static/js/avatar.js"></script>
+</head>  
+
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/">Get Size</a></li>
+        <li><a href="/model2">Try Fittone</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="content">
+    <section id="home">
+      <div id='avatar-container'>
+        <div id='avatar-loading'></div>
+      </div>
+
+      <h1 class="hero-title">Hi there modei2👋</h1>
+      <h1>I'm your <span class='gradient-text'>Virtual dressing room</span></h1>
+      <p>I'm web developer with a passion for creating interactive, 3D web experiences.</p>
+    </section>
+  </div>
+
+  <div class="wrapper">
+    <div class="title">Virtual Fittone model2</div>
+    <form action="/model2" method="POST">
+        <div class="form">
+            <div class="inputfield">
+                <label for="Factory CS">Coller Size (Inch)</label>
+                <input class="input" type="text" name="Factory CS" required>
+            </div>
+            <div class="inputfield">
+                <label for="Chest">Chest (Inch)</label>
+                <input class="input" type="text" name="Chest" required>
+            </div>
+            <div class="inputfield">
+                <label for="Shoulder">Shoulder (Inch)</label>
+                <input class="input" type="text" name="Shoulder" required>
+            </div>
+            <div class="inputfield">
+              <label for="Length">Length (Inch)</label>
+              <input class="input" type="text" name="Length" required>
+          </div>
+
+          <div class="inputfield">
+            <label for="Brand">Brand Name</label>
+            <div class = "custom_select">
+                <select name="brandname" id="brandname">
+                    <option value="" selected hidden>Select</option>
+                    <option value="Brand Name_Robato">Robato</option>
+                   
+                </select> 
+            </div>
+        </div>
+
+
+            <div class="inputfield">
+                <label for="Type">Type</label>
+                <div class = "custom_select">
+                    <select name="Type" id="Type">
+                        <option value="" selected hidden>Select</option>
+                        <option value="Type_slim fit">Slim Fit</option>
+                        <option value="Type_trim fit">Trim Fit</option>               
+                    </select>
+                </div>
+            </div>
+           
+            <div class="inputfield">
+                <input class="btn" type="submit" value="SHOW">
+            </div>
+        </div>
+    </form>
+
+    <div class="result">
+        {% if pred_value != 0 %}
+        <p>Recommended size from Model 2: {{ pred_value[0] }} </p>
+        {% endif %}
+    </div>
+</div>
+
+  
+</body>
+
+</html>
