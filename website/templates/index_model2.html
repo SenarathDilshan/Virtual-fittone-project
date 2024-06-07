@@ -20,7 +20,16 @@
     }
   </script>
 
+  
+
   <script type="module" src="static/js/avatar.js"></script>
+
+  <script>
+    // Pass the model path to the JS file
+    const modelPath = "{{ model_path }}";
+    //const model_path = model_path;
+  </script>
+
 </head>  
 
 <body>
@@ -29,8 +38,8 @@
       <ul>
         <li><a href="/">Get Size</a></li>
         <li><a href="/model2">Try Fittone</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#projects">Tutorial</a></li>
+        <li><a href="#contact">About us</a></li>
       </ul>
     </nav>
   </header>
@@ -40,9 +49,10 @@
         <div id='avatar-loading'></div>
       </div>
 
-      <h1 class="hero-title">Hi there modei2👋</h1>
+      <h1 class="hero-title">Hi there 👋</h1>
       <h1>I'm your <span class='gradient-text'>Virtual dressing room</span></h1>
-      <p>I'm web developer with a passion for creating interactive, 3D web experiences.</p>
+      <p>AI makes virtual fitting fast , fun and flawless with 3D web experience.</p>
+      <p>Fill out the form below and experience how your selected shirt fits you...</p>
     </section>
   </div>
 
@@ -98,7 +108,7 @@
 
     <div class="result">
         {% if pred_value != 0 %}
-        <p>Recommended size from Model 2: {{ pred_value[0] }} </p>
+        <p>Your chosen shirt: {{ pred_value[0] }} </p>
         {% endif %}
     </div>
 </div>

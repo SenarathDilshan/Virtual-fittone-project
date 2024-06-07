@@ -6,7 +6,7 @@ window.onload = () => loadModel();
 
 function loadModel() {
   const loader = new GLTFLoader();
-  loader.load('/static/models/avatar.glb',
+  loader.load(modelPath,
     (gltf) => {
       setupScene(gltf);
       document.getElementById('avatar-loading').style.display = 'none';
@@ -14,7 +14,7 @@ function loadModel() {
     (xhr) => {
       const percentCompletion = Math.round((xhr.loaded / xhr.total) * 100);
       document.getElementById('avatar-loading').innerText = `LOADING... ${percentCompletion}%`
-      console.log(`Loading model... ${percentCompletion}%`);
+      console.log(`Loading model... ${percentCompletion}%`); 
     }, 
     (error) => {
       console.log(error);
