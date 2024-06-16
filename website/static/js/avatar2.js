@@ -4,9 +4,45 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 window.onload = () => loadModel();
 
+document.querySelector('.menu-toggle').addEventListener('click', function() {
+  document.querySelector('nav ul').classList.toggle('show');
+});
+
+function validateInput() {
+  const chest = document.querySelector('input[name="Chest"]');
+  const shoulder = document.querySelector('input[name="Shoulder"]');
+  const length = document.querySelector('input[name="Length"]');
+  const message = document.getElementById('message');
+
+  let valid = true;
+  let messageText = '';
+
+  if (chest.value < 29 || chest.value > 53) {
+    messageText += 'Chest size should be between 29 and 53 inches.\n';
+    valid = false;
+  }
+  if (shoulder.value < 13 || shoulder.value > 24) {
+    messageText += 'Shoulder size should be between 13 and 24 inches.\n';
+    valid = false;
+  }
+  if (length.value < 20 || length.value > 40) {
+    messageText += 'Length should be between 20 and 40 inches.\n';
+    valid = false;
+  }
+
+  if (!valid) {
+    message.innerText = messageText;
+    message.style.display = 'block';
+  } else {
+    message.style.display = 'none';
+  }
+
+  return valid;
+}
+
 function loadModel() {
   const loader = new GLTFLoader();
-  loader.load('/static/models/avatar.glb',
+  loader.load('/static/models/welcomeavatar.glb',
     (gltf) => {
       setupScene(gltf);
       document.getElementById('avatar-loading').style.display = 'none';

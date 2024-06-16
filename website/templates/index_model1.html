@@ -21,23 +21,18 @@
   </script>
 
   <script type="module" src="static/js/avatar2.js"></script>
-
-  <!-- <script>
-    // Pass the model path to the JS file
-    const modelPath = "{{ model_path }}";
-    //const model_path = model_path;
-  </script> -->
-
-</head>  
+  
+</head>
 
 <body>
   <header>
+    <span class="menu-toggle">☰ Menu</span> <!-- Hamburger menu icon -->
     <nav>
       <ul>
         <li><a href="/">Get Size</a></li>
         <li><a href="/model2">Try Fittone</a></li>
-        <li><a href="#projects">Tutorial</a></li>
-        <li><a href="#contact">About Us</a></li>
+        <li><a href="/help">Help</a></li>
+        <li><a href="/aboutus">About Us</a></li>
       </ul>
     </nav>
   </header>
@@ -49,65 +44,89 @@
 
       <h1 class="hero-title">Hi there 👋</h1>
       <h1>I'm your <span class='gradient-text'>Virtual dressing room</span></h1>
-      <p>AI makes virtual fitting fast , fun and flawless with 3D web experience.</p>
-      <p>Fill out the form below and find the coller size that suit you...</p>
+      <p>AI makes virtual fitting fast, fun and flawless with 3D web experience.</p>
+      <p>Fill out the form below and find the collar size that suits you...</p>
     </section>
   </div>
 
   <div class="wrapper">
     <div class="title">Virtual Fittone</div>
-    <form action="/" method="POST">
-        <div class="form">
-            <div class="inputfield">
-                <label for="Chest">Chest (Inch)</label>
-                <input class="input" type="text" name="Chest" required>
-            </div>
-            <div class="inputfield">
-                <label for="Shoulder">Shoulder (Inch)</label>
-                <input class="input" type="text" name="Shoulder" required>
-            </div>
-            <div class="inputfield">
-              <label for="Length">Length (Inch)</label>
-              <input class="input" type="text" name="Length" required>
+    <form action="/" method="POST" onsubmit="return validateInput()">
+      <div class="form">
+        <div class="inputfield">
+          <label for="Chest">Chest (Inch)</label>
+          <input class="input" type="number" name="Chest" step="0.01" min="29" max="53" required>
+        </div>
+        <div class="inputfield">
+          <label for="Shoulder">Shoulder (Inch)</label>
+          <input class="input" type="number" name="Shoulder" step="0.01" min="13" max="24" required>
+        </div>
+        <div class="inputfield">
+          <label for="Length">Length (Inch)</label>
+          <input class="input" type="number" name="Length" step="0.01" min="20" max="40" required>
+        </div>
+
+        <div class="inputfield">
+          <label for="Brand">Brand Name</label>
+          <div class="custom_select">
+            <select name="brandname" id="brandname" required>
+              <option value="" selected hidden>Select</option>
+              <option value="Brand Name_Robato">Robato</option>
+            </select>
           </div>
-
-          <div class="inputfield">
-            <label for="Brand">Brand Name</label>
-            <div class = "custom_select">
-                <select name="brandname" id="brandname">
-                    <option value="" selected hidden>Select</option>
-                    <option value="Brand Name_Robato">Robato</option>
-                   
-                </select> 
-            </div>
         </div>
 
-
-            <div class="inputfield">
-                <label for="Type">Type</label>
-                <div class = "custom_select">
-                    <select name="Type" id="Type">
-                        <option value="" selected hidden>Select</option>
-                        <option value="Type_slim fit">Slim Fit</option>
-                        <option value="Type_trim fit">Trim Fit</option>               
-                    </select>
-                </div>
-            </div>
-           
-            <div class="inputfield">
-                <input class="btn" type="submit" value="SHOW">
-            </div>
+        <div class="inputfield">
+          <label for="Type">Type</label>
+          <div class="custom_select">
+            <select name="Type" id="Type" required>
+              <option value="" selected hidden>Select</option>
+              <option value="Type_slim fit">Slim Fit</option>
+              <option value="Type_trim fit">Trim Fit</option>
+            </select>
+          </div>
         </div>
+
+        <div class="inputfield">
+          <input class="btn" type="submit" value="SHOW">
+        </div>
+      </div>
     </form>
 
     <div class="result">
-        {% if pred_value != 0 %}
-        <p>Reccomonded size : {{pred_value}} </p>
-        {% endif %}
+      <p id="message" style="display:none; color:red;"></p>
+      {% if pred_value != 0 %}
+      <p>Recommended size: {{ pred_value[0]}}</p>
+      {% endif %}
     </div>
-</div>
+  </div>
 
-  
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section about">
+        <h2>About Fittone</h2>
+        <p>Fittone is your ultimate virtual dressing room, making it easy and fun to find the perfect fit.</p>
+      </div>
+      <div class="footer-section links">
+        <h2>Quick Links</h2>
+        <ul>
+          <li><a href="/">Get Size</a></li>
+          <li><a href="/model2">Try Fittone</a></li>
+          <li><a href="/help">Help</a></li>
+          <li><a href="/aboutus">About Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-section contact">
+        <h2>Contact Us</h2>
+        <p>Email: support@fittone.com</p>
+        <p>Phone: +123-456-7890</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2024 Fittone. All Rights Reserved.</p>
+    </div>
+  </footer>
 </body>
 
 </html>
